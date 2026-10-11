@@ -1,0 +1,3 @@
+source: https://algomaster.io/learn/lld/dry
+
+brief: The DRY (Don't Repeat Yourself) principle is a fundamental design principle in software development that emphasizes the importance of reducing redundancy in code. The core idea behind DRY is that every piece of knowledge or logic should have a single, unambiguous representation within a system. By adhering to the DRY principle, developers can create more maintainable, efficient, and less error-prone codebases.

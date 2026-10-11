@@ -1,0 +1,3 @@
+source: https://algomaster.io/learn/lld/lod
+
+brief: The Law of Demeter (LoD), also known as the Principle of Least Knowledge, is a design guideline in software development that promotes loose coupling between components. The core idea behind LoD is that an object should only communicate with its immediate collaborators and not with distant or unrelated objects. By adhering to the LoD principle, developers can create more modular, maintainable, and flexible codebases, reducing dependencies and enhancing the overall design of the system.

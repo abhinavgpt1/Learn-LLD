@@ -1,0 +1,3 @@
+source: https://algomaster.io/learn/lld/yagni
+
+brief: YAGNI, which stands for "You Aren't Gonna Need It," is a software development principle that encourages developers to avoid adding functionality or features to a system until they are actually needed. The core idea behind YAGNI is to prevent over-engineering and unnecessary complexity in codebases by focusing on delivering only what is required at the moment.
