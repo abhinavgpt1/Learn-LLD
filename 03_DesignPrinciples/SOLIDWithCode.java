@@ -219,6 +219,8 @@ class InterfaceSegregation {
     // focused interfaces:
 
     interface AudioPlayer {
+        // FYI: Having multiple related methods does not violate SRP.
+        // AutoPlayer - one responsibility: audio playback and its controls.
         void play_audio(String audioFile);
 
         void stop_audio();

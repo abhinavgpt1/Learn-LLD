@@ -19,7 +19,7 @@ Goal: Add new functionality without altering existing, stable code — reducing 
 
 ## L — Liskov Substitution Principle (LSP)
 
-Objects of a subclass should be usable wherever objects of its superclass are expected, without breaking the program's expected behavior.
+Objects of a subclass should be usable wherever objects of its superclass are expected, without causing unexpected errors or behavior.
 If a parent can do X, the child should also be able to do X (or a compatible version of it).
 
 Goal: Ensure consistent and predictable behaviour when using inheritance.
