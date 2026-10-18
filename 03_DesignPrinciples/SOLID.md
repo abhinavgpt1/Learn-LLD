@@ -5,10 +5,10 @@ ref: https://medium.com/backticks-tildes/the-s-o-l-i-d-principles-in-pictures-b3
 
 ## S — Single Responsibility Principle (SRP)
 
-A class should have one responsibility and only one reason to change.
-This reduces coupling/interdependence between behaviours. If one responsibility changes, it won’t accidentally break another.
+A class should have only one reason to change, meaning it should have one clearly defined responsibility (!= methods)
+This reduces coupling/interdependence between behaviours. If one responsibility changes, it won't accidentally break another.
 
-Goal: Keep behaviour separated so changes don’t introduce unexpected bugs.
+Goal: Keep behaviour separated so changes don't introduce unexpected bugs.
 
 ## O — Open/Closed Principle (OCP)
 
@@ -19,15 +19,15 @@ Goal: Add new functionality without altering existing, stable code — reducing 
 
 ## L — Liskov Substitution Principle (LSP)
 
-Subclasses should be usable in place of their parent classes without altering program correctness.
+Objects of a subclass should be usable wherever objects of its superclass are expected, without breaking the program's expected behavior.
 If a parent can do X, the child should also be able to do X (or a compatible version of it).
 
 Goal: Ensure consistent and predictable behaviour when using inheritance.
 
 ## I — Interface Segregation Principle (ISP)
 
-Clients should not be forced to depend on methods they don’t use.
-It’s better to have multiple small, specific interfaces rather than one large, all-purpose interface.
+Clients should not be forced to depend on methods they don't use.
+It's better to have multiple small, specific interfaces rather than one large, all-purpose interface.
 
 Goal: Ensure classes implement only what they need, reducing clutter and bugs from unused functionality.
 
@@ -37,3 +37,82 @@ High-level modules should depend on abstractions, not concrete low-level impleme
 Both high-level and low-level components depend on interfaces, not on each other.
 
 Goal: Reduce tight coupling and make systems easier to modify, test, and extend.
+
+------------------
+
+#### QQ - Isn't ISP followed automatically by SRP? If not, what's the difference?
+#### Ans - Consider this example:
+
+```
+interface Machine {
+    void print();
+    void scan();
+    void fax();
+}
+
+class BasicPrinter implements Machine {
+    public void print() {
+        System.out.println("Printing");
+    }
+
+    public void scan() {
+        throw new UnsupportedOperationException();
+    }
+
+    public void fax() {
+        throw new UnsupportedOperationException();
+    }
+}
+```
+
+BasicPrinter has one clear responsibility: printing. It can satisfy SRP.
+However, it must implement scan() and fax() even though it cannot perform those operations. That violates ISP.
+The problem is not that the interface has multiple methods. The problem is that the interface forces clients or implementations to depend on capabilities they don't need.
+
+> #### Difference
+
+SRP — Class-level concern
+Is this class handling multiple independent reasons to change?
+Focus: organizing responsibilities among classes.
+
+
+ISP — Interface-level concern
+Is this interface forcing an implementation or client to depend on methods it doesn't need?
+Focus: organizing interfaces around the needs of their clients.
+
+> Soln: Fix it by splitting the large Machine interface into smaller, capability-specific interfaces
+
+```
+interface Printer {
+    void print();
+}
+
+interface Scanner {
+    void scan();
+}
+
+interface Fax {
+    void fax();
+}
+
+class BasicPrinter implements Printer {
+    public void print() {
+        System.out.println("Printing...");
+    }
+}
+
+class MultiFunctionPrinter implements Printer, Scanner, Fax {
+    public void print() {
+        System.out.println("Printing...");
+    }
+
+    public void scan() {
+        System.out.println("Scanning...");
+    }
+
+    public void fax() {
+        System.out.println("Faxing...");
+    }
+}
+```
+------------------

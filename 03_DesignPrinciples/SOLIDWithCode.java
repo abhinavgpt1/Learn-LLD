@@ -388,4 +388,13 @@ class DependencyInversion {
     // - Both high-level and low-level components depend on interfaces/abstractions.
 
     // This follows the DIP, resulting in a more flexible and extensible design.
+
+    // Another example: OrderService directly creating a CreditCardPayment object,
+    // it should depend on a PaymentProcessor interface, which can be implemented by
+    // credit card or UPI payment classes. The required implementation is provided
+    // through constructor dependency injection just like how it's done for
+    // EmailClient in EmailService.
+
+    // FYI: DIP vs dependency injection: DIP is a design principle; dependency
+    // injection is one technique for implementing it.
 }
